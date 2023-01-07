@@ -13,9 +13,11 @@ export default function App() {
         <Stack.Screen
           name="Main"
           component={Main}
-          options={{title: 'Main'}}
+          options={{title: 'Main', headerShown: false,}}
         />
-        <Stack.Screen name="Test" component={Test} />
+        <Stack.Screen 
+          name="Test" 
+          component={Test} />
       </Stack.Navigator>
     </NavigationContainer>
   );
