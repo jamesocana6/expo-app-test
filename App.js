@@ -1,36 +1,22 @@
-import { StatusBar } from 'expo-status-bar';
-import { Button, StyleSheet, Text, View } from 'react-native';
-import Navbar from './components/Navbar';
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import Main from './src/pages/Main';
+import Test from './src/pages/Test';
 
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Navbar/>
-      <Text>Open up App.js to start working on your app!</Text>
-      <Text style={styles.bigText}>Big Text</Text>
-      <Text>Just Text</Text>
+    <NavigationContainer>
 
-      {/* <h1>Just h1</h1> */}
-      <Button
-        onPress={() => {
-          alert('You tapped the button!');
-        }}
-        title="Press Me"
-      />
-      <StatusBar style="auto" />
-    </View>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Main"
+          component={Main}
+          options={{title: 'Main'}}
+        />
+        <Stack.Screen name="Test" component={Test} options={{title: 'Test Page'}} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  bigText: {
-    fontSize: 100,
-  }
-});

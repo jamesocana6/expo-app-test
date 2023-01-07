@@ -1,11 +1,13 @@
 import React from "react";
 import { Text, View, StyleSheet } from "react-native";
 
-const Navbar = () => {
+const Test = () => {
     return (
-        <View>
-            <Text style={styles.bigText}>Navbar Component</Text>
-        </View>
+        <>
+            <View style={styles.container}>
+                <Text>Test Page</Text>
+            </View>
+        </>
     )
 }
 
@@ -16,9 +18,6 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       justifyContent: 'center',
     },
-    bigText: {
-      fontSize: 100,
-    }
   });
 
-export default Navbar;
+export default Test;
