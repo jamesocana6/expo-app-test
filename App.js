@@ -15,7 +15,7 @@ export default function App() {
           component={Main}
           options={{title: 'Main'}}
         />
-        <Stack.Screen name="Test" component={Test} options={{title: 'Test Page'}} />
+        <Stack.Screen name="Test" component={Test} />
       </Stack.Navigator>
     </NavigationContainer>
   );
