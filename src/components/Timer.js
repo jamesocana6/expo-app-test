@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Text, View, StyleSheet, TextInput, Button } from "react-native";
+import Hello from "./Hello";
 
 let x = 0;
 
@@ -8,6 +9,7 @@ const Timer = () => {
     const [sec, setSec] = useState(0)
     const [mil, setMil] = useState(0)
     const [time, setTime] = useState(0);
+    const [modalVisible, setModalVisible] = useState(false);
     const [isActive, setActive] = useState(false)
     const [disabled, setDisabled] = useState(false)
 
@@ -37,6 +39,7 @@ const Timer = () => {
         if (x >= 10) {
             setActive(false);
             setDisabled(false);
+            setModalVisible(true)
             x=0;
         }
     }
@@ -70,6 +73,7 @@ const Timer = () => {
             </Text>
             <Button title="Start" disabled={disabled} onPress={startTimer}/>
             <Button title="Stop" onPress={stopTimer}/>
+            <Hello modalVisible={modalVisible} setModalVisible={setModalVisible}/>
         </View>
     )
 }

@@ -1,11 +1,14 @@
-import React from "react";
+import React, {useState} from "react";
 import { Text, View, StyleSheet } from "react-native";
+import Hello from "../components/Hello";
 
 const Profile = () => {
+    const [modalVisible, setModalVisible] = useState(false);
     return (
         <>
             <View style={styles.container}>
                 <Text>Profile Page</Text>
+                <Hello modalVisible={modalVisible} setModalVisible={setModalVisible}/>
             </View>
         </>
     )
