@@ -1,20 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import NumberSquares from "../components/NumberSquares"
 import Operations from "../components/Operations";
 import Output from "../components/Output";
 
 const Calculator = () => {
+
+    const [equation, setEquation] = useState(0)
+
     return (
         <View style={styles.container}>
             <Text>Calculator!</Text>
             <View style={[styles.calculator]}>
+                <Output equation={equation}/>
                 <View style={[styles.numAndOutput]}>
-                    <Output/>
                     <NumberSquares/>
-                </View>
-                <View style={[styles.operations]}>
-                    <Operations/>
+                    <View style={[styles.operations]}>
+                        <Operations/>
+                    </View>
                 </View>
             </View>
         </View>
@@ -29,10 +32,10 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     calculator: {
-        flexDirection: "row",
+        flexDirection: "column",
     },
     numAndOutput: {
-        flexDirection: "column",
+        flexDirection: "row",
     },
     operations: {
         flexDirection: "column",

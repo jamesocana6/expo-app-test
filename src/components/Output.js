@@ -1,10 +1,10 @@
 import React from "react";
 import { Text, View, StyleSheet, TouchableHighlight } from "react-native";
 
-const Output = () => {
+const Output = ({equation}) => {
     return (
-        <View>
-            <Text>Output Component</Text>
+        <View style={styles.output}>
+            <Text style={{fontSize: 30,}}>{equation}</Text>
         </View>
     )
 }
@@ -15,6 +15,12 @@ const styles = StyleSheet.create({
       backgroundColor: '#fff',
       alignItems: 'center',
       justifyContent: 'center',
+    },
+    output: {
+        textAlign: "right",
+        backgroundColor: "#999999",
+        padding: 5,
+        borderRadius: 5,
     },
   });
 
