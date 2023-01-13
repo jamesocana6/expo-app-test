@@ -6,6 +6,8 @@ import Leaderboard from "./Leaderboard";
 import Home from "./Home";
 import { Feather } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons'; 
+import { Entypo } from '@expo/vector-icons'; 
+import Calculator from "./Calculator";
 
 const Tab = createBottomTabNavigator();
 
@@ -38,6 +40,15 @@ const Main = () => {
                 options={{
                     tabBarIcon: ({ color, size }) => (
                         <MaterialIcons name="leaderboard" color={color} size={size} />
+                        )
+                    }}
+                />
+                <Tab.Screen 
+                name="Calculator" 
+                component={Calculator} 
+                options={{
+                    tabBarIcon: ({ color, size }) => (
+                        <Entypo name="calculator" color={color} size={size} />
                         )
                     }}
                 />
