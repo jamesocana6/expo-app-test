@@ -18,12 +18,16 @@ const NumberSquares = () => {
         <View style={[styles.numberContainer, styles.numberArea]}>
             {numbers}
             <View style={{flexDirection: "row",}}>
-                <View style={[styles.numberButton, {flex: 3, width: 115,},]}>
-                    <Text>0</Text>
-                </View>
-                <View style={[styles.numberButton, {flex: 1}]}>
-                    <Text>.</Text>
-                </View>
+                <TouchableOpacity>
+                    <View style={[styles.numberButton, {flex: 3, width: 115,},]}>
+                        <Text>0</Text>
+                    </View>
+                </TouchableOpacity>
+                <TouchableOpacity>
+                    <View style={[styles.numberButton, {flex: 1}]}>
+                        <Text>.</Text>
+                    </View>
+                </TouchableOpacity>
             </View>
         </View>
     )
@@ -51,7 +55,7 @@ const styles = StyleSheet.create({
         margin: 5,
     },
     numberArea: {
-        height: 200,
+        height: 235,
         width: 200,
         flexDirection: "row",
         flexWrap: "wrap",
