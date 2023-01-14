@@ -1,12 +1,20 @@
 import React from "react";
 import { StyleSheet, Text, TouchableHighlight, TouchableOpacity, View } from "react-native";
 
-const NumberSquares = () => {
+const NumberSquares = ({equation, setEquation}) => {
+    const handleOnClick = (event) => {
+        console.log(event)
+        if (equation == 0) {
+            setEquation(event.target.textContent)
+        } else {
+            setEquation([ ...equation, event.target.textContent]);
+        }
+    }
 
     let numbers = ["1", '2', '3', '4', '5', '6', '7', '8', '9',]
     numbers = numbers.map((number) => {
         return (
-            <TouchableOpacity>
+            <TouchableOpacity onPress={handleOnClick}>
                 <View style={styles.numberButton}>
                     <Text>{number}</Text>
                 </View>
@@ -19,12 +27,12 @@ const NumberSquares = () => {
             {numbers}
             <View style={{flexDirection: "row",}}>
                 <TouchableOpacity>
-                    <View style={[styles.numberButton, {flex: 3, width: 115,},]}>
+                    <View onPress={handleOnClick} style={[styles.numberButton, {flex: 3, width: 115,},]}>
                         <Text>0</Text>
                     </View>
                 </TouchableOpacity>
                 <TouchableOpacity>
-                    <View style={[styles.numberButton, {flex: 1}]}>
+                    <View onPress={handleOnClick} style={[styles.numberButton, {flex: 1}]}>
                         <Text>.</Text>
                     </View>
                 </TouchableOpacity>

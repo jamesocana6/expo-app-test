@@ -1,12 +1,16 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { Button, StyleSheet, Text, View } from "react-native";
 import NumberSquares from "../components/NumberSquares"
 import Operations from "../components/Operations";
 import Output from "../components/Output";
 
 const Calculator = () => {
 
-    const [equation, setEquation] = useState(0)
+    const [equation, setEquation] = useState([0])
+
+    const handleClear = () => {
+        setEquation([])
+    }
 
     return (
         <View style={styles.container}>
@@ -14,10 +18,13 @@ const Calculator = () => {
             <View style={[styles.calculator]}>
                 <Output equation={equation}/>
                 <View style={[styles.numAndOutput]}>
-                    <NumberSquares/>
+                    <NumberSquares equation={equation} setEquation={setEquation}/>
                     <View style={[styles.operations]}>
-                        <Operations/>
+                        <Operations equation={equation} setEquation={setEquation}/>
                     </View>
+                </View>
+                <View>
+                    <Button title={"Clear"}  onPress={handleClear}/>
                 </View>
             </View>
         </View>

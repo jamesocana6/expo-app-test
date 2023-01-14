@@ -1,12 +1,21 @@
 import React from "react";
 import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
 
-const Operations = () => {
+const Operations = ({equation, setEquation}) => {
 
-    let operations = ["/", '*', '-', '+', '=',]
+    let operations = ["/", '*', '-', '+',]
+
+    const handleOnClick = (event) => {
+        if (event.target.textContent == "-" && equation.length === 0) {
+            setEquation(event.target.textContent);
+        } else if (equation.length > 0) {
+            setEquation([...equation, event.target.textContent])
+        }
+    }
+
     operations = operations.map((operation) => {
         return (
-            <TouchableOpacity>
+            <TouchableOpacity onPress={handleOnClick}>
                 <View style={styles.operationButton}>
                     <Text>{operation}</Text>
                 </View>
@@ -15,9 +24,16 @@ const Operations = () => {
     })
 
     return (
-        <View style={styles.operationArea}>
-            {operations}
-        </View>
+        <>
+            <View style={styles.operationArea}>
+                {operations}
+            </View>
+            <TouchableOpacity>
+                <View style={styles.operationButton}>
+                    <Text>=</Text>
+                </View>
+            </TouchableOpacity>
+        </>
     )
 }
 

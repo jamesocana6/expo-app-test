@@ -2,6 +2,7 @@ import React from "react";
 import { Text, View, StyleSheet, TouchableHighlight } from "react-native";
 
 const Output = ({equation}) => {
+    console.log(equation)
     return (
         <View style={styles.output}>
             <Text style={{fontSize: 30,}}>{equation}</Text>
@@ -21,6 +22,7 @@ const styles = StyleSheet.create({
         backgroundColor: "#999999",
         padding: 5,
         borderRadius: 5,
+        minHeight: 50,
     },
   });
 
