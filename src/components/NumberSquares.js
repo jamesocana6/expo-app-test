@@ -5,7 +5,7 @@ const NumberSquares = ({equation, setEquation}) => {
     const handleOnClick = (event) => {
         console.log(event)
         if (equation == 0) {
-            setEquation(event.target.textContent)
+            setEquation([event.target.textContent])
         } else {
             setEquation([ ...equation, event.target.textContent]);
         }
@@ -26,13 +26,13 @@ const NumberSquares = ({equation, setEquation}) => {
         <View style={[styles.numberContainer, styles.numberArea]}>
             {numbers}
             <View style={{flexDirection: "row",}}>
-                <TouchableOpacity>
-                    <View onPress={handleOnClick} style={[styles.numberButton, {flex: 3, width: 115,},]}>
+                <TouchableOpacity onPress={handleOnClick}>
+                    <View style={[styles.numberButton, {flex: 3, width: 115,},]}>
                         <Text>0</Text>
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity>
-                    <View onPress={handleOnClick} style={[styles.numberButton, {flex: 1}]}>
+                <TouchableOpacity onPress={handleOnClick}>
+                    <View style={[styles.numberButton, {flex: 1}]}>
                         <Text>.</Text>
                     </View>
                 </TouchableOpacity>

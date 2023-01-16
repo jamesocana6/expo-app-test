@@ -1,13 +1,13 @@
 import React from "react";
 import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
 
-const Operations = ({equation, setEquation}) => {
+const Operations = ({equation, setEquation, solve}) => {
 
     let operations = ["/", '*', '-', '+',]
 
     const handleOnClick = (event) => {
         if (event.target.textContent == "-" && equation.length === 0) {
-            setEquation(event.target.textContent);
+            setEquation([event.target.textContent]);
         } else if (equation.length > 0) {
             setEquation([...equation, event.target.textContent])
         }
@@ -28,7 +28,7 @@ const Operations = ({equation, setEquation}) => {
             <View style={styles.operationArea}>
                 {operations}
             </View>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={solve}>
                 <View style={styles.operationButton}>
                     <Text>=</Text>
                 </View>

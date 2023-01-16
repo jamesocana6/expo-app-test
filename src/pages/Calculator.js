@@ -6,7 +6,36 @@ import Output from "../components/Output";
 
 const Calculator = () => {
 
+    
     const [equation, setEquation] = useState([0])
+    
+    //SOLVE
+    const solve = () => {
+        //console.log(equation)
+        if (equation[equation.length-1] === "-" || equation[equation.length-1] === "+" || equation[equation.length-1] === "/" || equation[equation.length-1] === "*") {
+            alert("Please do not end in an operation!")
+        } else {
+            let math = equation.join("").match("[-+/*]")[0];
+            let newEq = equation.join('').split(math);
+            let ans = parseFloat(newEq[0]);
+            for (let i = 1; i < newEq.length; i++) {
+                
+                if (math === "+") {
+                    ans += parseFloat(newEq[i]);
+                } else if (math === "-") {
+                    ans -= parseFloat(newEq[i]);
+                    
+                } else if (math === "/") {
+                    ans /= parseFloat(newEq[i]);
+                    
+                } else if (math === "*") {
+                    ans *= parseFloat(newEq[i]);
+
+                }
+                console.log(ans)
+            }
+        }
+    }
 
     const handleClear = () => {
         setEquation([])
@@ -20,7 +49,7 @@ const Calculator = () => {
                 <View style={[styles.numAndOutput]}>
                     <NumberSquares equation={equation} setEquation={setEquation}/>
                     <View style={[styles.operations]}>
-                        <Operations equation={equation} setEquation={setEquation}/>
+                        <Operations equation={equation} setEquation={setEquation} solve={solve}/>
                     </View>
                 </View>
                 <View>
