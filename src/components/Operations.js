@@ -1,48 +1,31 @@
 import React from "react";
 import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
 
-const Operations = ({equation, setEquation, solve}) => {
-
-    let operations = ["/", '*', '-', '+',]
+const Operations = ({ operation, equation, setEquation }) => {
 
     const handleOnClick = (event) => {
         if (event.target.textContent == "-" && equation.length === 0) {
-            setEquation([event.target.textContent]);
+            setEquation([operation]);
         } else if (equation.length > 0) {
-            setEquation([...equation, event.target.textContent])
+            setEquation([...equation, operation])
         }
     }
 
-    operations = operations.map((operation) => {
-        return (
-            <TouchableOpacity onPress={handleOnClick}>
-                <View style={styles.operationButton}>
-                    <Text>{operation}</Text>
-                </View>
-            </TouchableOpacity>
-        )
-    })
-
     return (
-        <>
-            <View style={styles.operationArea}>
-                {operations}
+        <TouchableOpacity onPress={handleOnClick}>
+            <View style={styles.operationButton}>
+                <Text>{operation}</Text>
             </View>
-            <TouchableOpacity onPress={solve}>
-                <View style={styles.operationButton}>
-                    <Text>=</Text>
-                </View>
-            </TouchableOpacity>
-        </>
+        </TouchableOpacity>
     )
 }
 
 const styles = StyleSheet.create({
     container: {
-      flex: 1,
-      backgroundColor: '#fff',
-      alignItems: 'center',
-      justifyContent: 'center',
+        flex: 1,
+        backgroundColor: '#fff',
+        alignItems: 'center',
+        justifyContent: 'center',
     },
     operationButton: {
         width: 55,
@@ -57,6 +40,6 @@ const styles = StyleSheet.create({
         width: 70,
         flexDirection: "column",
     },
-  });
+});
 
 export default Operations;

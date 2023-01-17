@@ -2,10 +2,10 @@ import React from "react";
 import { Text, View, StyleSheet, TouchableHighlight } from "react-native";
 
 const Output = ({equation}) => {
-    console.log(equation)
+    //console.log(equation)
     return (
         <View style={styles.output}>
-            <Text style={{fontSize: 30,}}>{equation}</Text>
+            <Text style={{fontSize: 30, textAlign: "right"}}>{equation}</Text>
         </View>
     )
 }
