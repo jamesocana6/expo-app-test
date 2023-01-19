@@ -90,7 +90,6 @@ const Timer = () => {
                 borderWidth={0}
                 animated={true}
                 />
-            {/* <Button onPress={clickButton} title="CLICK ME"/> */}
         </View>
     )
 }
