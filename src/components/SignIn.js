@@ -1,15 +1,17 @@
-import { Button, Text, Platform } from "react-native";
+import { Button, View, Text, Platform } from "react-native";
 import { auth, provider } from "../../firebaseConfig"
 import { signInWithRedirect, signOut, getRedirectResult, signInWithPopup } from "firebase/auth";
+import { useState } from "react";
 
 const SignIn = () => {
-
+  const [user, setUser] = useState(undefined)
   const handleSignIn = () => {
     if (Platform.OS === "web") {
       signInWithPopup(auth, provider)
         .then((result) => {
-          const user = result.user;
-          console.log(user)
+          // const user = result.user;
+          setUser(result.user)
+          console.log(result.user)
         }).catch((error) => {
           console.log("ERROR")
           // Handle Errors here.
@@ -36,22 +38,31 @@ const SignIn = () => {
   }
   const handleSignOut = () => {
     signOut(auth).then(() => {
-      console.log("signout successful")
-      // Sign-out successful.
+      setUser(undefined)
     }).catch((error) => {
       // An error happened.
     });
   }
 
+  const signedIn = () => {
+    return (
+      <View>
+        <Text>Hello {user.displayName}!</Text>
+        <Button onPress={handleSignOut} title={"Sign Out"} />
+      </View>
+    )
+  }
 
 
-  return (
-    <>
-      <Text>SignIn</Text>
-      <Button onPress={handleSignIn} title={"Sign In"} />
-      <Button onPress={handleSignOut} title={"Sign Out"} />
-    </>
-  )
+  const signedOut = () => {
+    return (
+      <View>
+        <Button onPress={handleSignIn} title={"Sign In"} />
+      </View>
+    )
+  }
+
+  return user ? signedIn() : signedOut();
 }
 
 export default SignIn;
