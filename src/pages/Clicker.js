@@ -1,27 +1,29 @@
 import React, { useEffect, useState } from "react";
 import { Text, View, StyleSheet, Button } from "react-native";
 
-let coundownTimer = 3;
-
+let countdown = 3;
 const Clicker = () => {
     const [count, setCount] = useState(0)
     const [active, setActive] = useState(false)
-    //const [startCountdown, setStartCountdown] = useState(false)
-    const [countdown, setCountdown] = useState(3)
+    const [countdown1, setCountdown] = useState(3)
+    const [disabled, setDisabled] = useState(true)
     ///ADD COUNTDOwN TIMER 3, 2, 1
     ///Add game timer 10 seconds to click as many times as possible, if on computer, you can use the space bar 
     ///save high score to MMKV
     
     function startCountdown() {
         let timerId = setInterval(() => {
-            coundownTimer--
-            console.log(coundownTimer)
-            if (coundownTimer === 0) {
+            countdown--
+            setCountdown(countdown)
+            console.log(countdown)
+            if (countdown === 0) {
                 clearInterval(timerId)
+                countdown = 3
+                setDisabled(false)
             }
         }, 1000);
     }
-        
+
     const handleOnClick = () => {
         setActive(true)
         startCountdown()
@@ -33,7 +35,10 @@ const Clicker = () => {
 
     const isActive = () => {
         return (
-            <Button title="CLICK ME" onPress={handleClicker}/>
+            <>
+                <Text>{countdown1}</Text>
+                <Button title="CLICK ME" onPress={handleClicker} disabled={disabled}/>
+            </>
         )
     }
     
