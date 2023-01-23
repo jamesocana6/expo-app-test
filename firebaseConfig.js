@@ -1,6 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth, GoogleAuthProvider, signInWithRedirect, signOut, getRedirectResult } from "firebase/auth";
-import { getAnalytics } from "firebase/analytics";
+//import { getAnalytics } from "firebase/analytics";
 
 // Optionally import the services that you want to use
 // import {...} from "firebase/database";
@@ -22,7 +22,7 @@ const firebaseConfig = {
   };
 
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+//const analytics = getAnalytics(app);
 
 // Initialize Firebase Authentication and get a reference to the service
 export const auth = getAuth(app);

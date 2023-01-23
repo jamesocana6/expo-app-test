@@ -31,6 +31,9 @@ const Home = ({navigation}) => {
                 <TouchableOpacity onPress={() => navigation.navigate('Test')}>
                     <Text>To Test Page</Text>
                 </TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate('Clicker')}>
+                    <Text>To Clicker Game</Text>
+                </TouchableOpacity>
                 <Text>Home Page</Text>
             </View>
             <View style={styles.container}>
