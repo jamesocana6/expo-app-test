@@ -62,14 +62,6 @@ const Clicker = () => {
         setCount(count+1)
     }
 
-    const handleSpacePress = (e) => {
-        if (Platform.OS === "web") {
-            if (e.key === " ") { 
-                setCount(count+1)
-            }
-        }
-    }
-
     const isActive = () => {
         return (
             <>
@@ -97,7 +89,7 @@ const Clicker = () => {
                 {Platform.OS === "web" ?  
                 <>
                     <Text>WEB VERSION</Text>
-                    <input type={"button"} value={"CLICK ME"} autoFocus onKeyDownCapture={handleSpacePress} onClick={handleClicker}/> 
+                    <input type={"button"} value={"CLICK ME"} autoFocus onClick={handleClicker}/> 
                 </>
                 : <></>}
             </>
