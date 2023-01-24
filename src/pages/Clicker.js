@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Text, View, StyleSheet, Button, Keyboard, TextInput, Platform } from "react-native";
+import { Text, View, StyleSheet, Button, Keyboard, TextInput, Platform, Pressable, TouchableOpacity } from "react-native";
 
 let countdown = 3;
 let gameCountdown = 5;
@@ -27,8 +27,8 @@ const Clicker = () => {
             }
         }, 1000);
     }
-    
-    function startGameCountdown(event) {
+
+    function startGameCountdown(e) {
         if (Platform.OS === "web") {
             console.log("HELLO")
         }
@@ -62,18 +62,53 @@ const Clicker = () => {
         setCount(count+1)
     }
 
+    const handleSpacePress = (e) => {
+        if (Platform.OS === "web") {
+            if (e.key === " ") { 
+                setCount(count+1)
+            }
+        }
+    }
+
     const isActive = () => {
         return (
             <>
                 <Text>{countdown1}</Text>
-                <Button title="CLICK ME" onPress={handleClicker} disabled={disabled}/>
+                {Platform.OS === "android" ? 
+                <>
+                    <Text>GOOBYE </Text>
+                    <TouchableOpacity style={{height: 200, width: 200, backgroundColor: "blue", justifyContent: "center", alignItems: "center"}} onPress={handleClicker} disabled={disabled}>
+                    <Text style={{ color: "white", }}>
+                            CLICK ME
+                        </Text>
+                    </TouchableOpacity>
+                </>
+                 : <></>}
+                {Platform.OS === "ios" ? 
+                <>
+                    <Text>GOOBYE </Text>
+                    <TouchableOpacity style={{height: 200, width: 200, backgroundColor: "blue", justifyContent: "center", alignItems: "center"}} onPress={handleClicker} disabled={disabled}>
+                        <Text style={{ color: "white", }}>
+                            CLICK ME
+                        </Text>
+                    </TouchableOpacity>
+                </>
+                 : <></>}
+                {Platform.OS === "web" ?  
+                <>
+                    <Text>WEB VERSION</Text>
+                    <input type={"button"} value={"CLICK ME"} autoFocus onKeyDownCapture={handleSpacePress} onClick={handleClicker}/> 
+                </>
+                : <></>}
             </>
         )
     }
     
     const isNotActive = () => {
         return (
-            <Button title="Start" onPress={handleOnClick}/>
+            <>
+                <Button title="Start" onPress={handleOnClick}/>
+            </>
         )
     }
 
