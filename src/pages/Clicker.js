@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Text, View, StyleSheet, Button } from "react-native";
+import { Text, View, StyleSheet, Button, Keyboard, TextInput, Platform } from "react-native";
 
 let countdown = 3;
+let gameCountdown = 5;
 const Clicker = () => {
     const [count, setCount] = useState(0)
+    const [highscore, setHighscore] = useState(0)
     const [active, setActive] = useState(false)
     const [countdown1, setCountdown] = useState(3)
     const [disabled, setDisabled] = useState(true)
@@ -12,17 +14,44 @@ const Clicker = () => {
     ///save high score to MMKV
     
     function startCountdown() {
+        setCount(0)
         let timerId = setInterval(() => {
             countdown--
             setCountdown(countdown)
-            console.log(countdown)
             if (countdown === 0) {
+                setCountdown("START")
                 clearInterval(timerId)
                 countdown = 3
                 setDisabled(false)
+                startGameCountdown()
             }
         }, 1000);
     }
+    
+    function startGameCountdown(event) {
+        if (Platform.OS === "web") {
+            console.log("HELLO")
+        }
+        let gameTimerId = setInterval(() => {
+            gameCountdown--
+            setCountdown(countdown)
+            if (gameCountdown === 0) {
+                //GAME END 
+                clearInterval(gameTimerId)
+                //SAVE HIGHSCORE HERE
+                //RESET GAME
+                gameCountdown = 5
+                setActive(false)
+                setDisabled(true)
+            }
+        }, 1000);
+    }
+
+    useEffect(()=> {
+        if (count > highscore) {
+            setHighscore(count)
+        }
+    }, [count])
 
     const handleOnClick = () => {
         setActive(true)
@@ -52,6 +81,7 @@ const Clicker = () => {
         <>
             <View style={styles.container}>
                 <Text>Clicker Game</Text>
+                {highscore ? <Text>High Score: {highscore}</Text> : <></>}
                 <Text>Score: {count}</Text>
                 {active ? isActive() : isNotActive()}
             </View>
