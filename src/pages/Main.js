@@ -8,6 +8,7 @@ import { Feather } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons'; 
 import { Entypo } from '@expo/vector-icons'; 
 import Calculator from "./Calculator";
+import Storage from "./Storage";
 
 const Tab = createBottomTabNavigator();
 
@@ -46,6 +47,15 @@ const Main = () => {
                 <Tab.Screen 
                 name="Calculator" 
                 component={Calculator} 
+                options={{
+                    tabBarIcon: ({ color, size }) => (
+                        <Entypo name="calculator" color={color} size={size} />
+                        )
+                    }}
+                />
+                <Tab.Screen 
+                name="Storage" 
+                component={Storage} 
                 options={{
                     tabBarIcon: ({ color, size }) => (
                         <Entypo name="calculator" color={color} size={size} />

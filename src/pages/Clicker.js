@@ -1,21 +1,40 @@
 import React, { useEffect, useState } from "react";
+import * as SecureStore from 'expo-secure-store';
 import { Text, View, StyleSheet, Button, Keyboard, TextInput, Platform, Pressable, TouchableOpacity } from "react-native";
+
 
 let countdown = 3;
 let gameCountdown = 5;
 const Clicker = () => {
+    //localStorage.clear()
     const [count, setCount] = useState(0)
     const [highscore, setHighscore] = useState(0)
     const [active, setActive] = useState(false)
     const [countdown1, setCountdown] = useState(3)
     const [disabled, setDisabled] = useState(true)
     useEffect(getHighscore,[])
+    async function save(key, value) {
+        await SecureStore.setItemAsync(key, value);
+      }
+      
+      async function getValueFor(key) {
+        let result = await SecureStore.getItemAsync(key);
+        if (result) {
+            console.log("nice we got it", result)
+            setHighscore(parseInt(result))
+        } else {
+            console.log("drats")
+        }
+      }
     ///ADD COUNTDOwN TIMER 3, 2, 1
     ///Add game timer 10 seconds to click as many times as possible, if on computer, you can use the space bar 
     ///save high score to MMKV
     function getHighscore() {
         if (Platform.OS === "web") {
-            setHighscore(localStorage.getItem("HS"))
+            setHighscore(localStorage.getItem("HS") || 0)
+        }
+        if (Platform.OS === "ios" || Platform.OS === "android") {
+            getValueFor("HS")
         }
     }
     
@@ -58,6 +77,10 @@ const Clicker = () => {
             setHighscore(count)
             if (Platform.OS === "web") {
                 localStorage.setItem("HS", count)
+            }
+            if (Platform.OS === "ios" || Platform.OS === "android") {
+                console.log(JSON.stringify(count))
+                save("HS", JSON.stringify(count))
             }
         }
     }, [count])
