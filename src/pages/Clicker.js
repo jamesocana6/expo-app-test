@@ -9,9 +9,15 @@ const Clicker = () => {
     const [active, setActive] = useState(false)
     const [countdown1, setCountdown] = useState(3)
     const [disabled, setDisabled] = useState(true)
+    useEffect(getHighscore,[])
     ///ADD COUNTDOwN TIMER 3, 2, 1
     ///Add game timer 10 seconds to click as many times as possible, if on computer, you can use the space bar 
     ///save high score to MMKV
+    function getHighscore() {
+        if (Platform.OS === "web") {
+            setHighscore(localStorage.getItem("HS"))
+        }
+    }
     
     function startCountdown() {
         setCount(0)
@@ -50,6 +56,9 @@ const Clicker = () => {
     useEffect(()=> {
         if (count > highscore) {
             setHighscore(count)
+            if (Platform.OS === "web") {
+                localStorage.setItem("HS", count)
+            }
         }
     }, [count])
 

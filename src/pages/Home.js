@@ -6,7 +6,7 @@ const Home = ({navigation}) => {
 
     /////////////
     /////////////
-    // BACKEND WILL BE AWS or GOOGLE for the DB. Then create a Node.js and express.js to handle updating scores to the DB. 
+    // BACKEND WILL BE AWS DynamoDB or GOOGLE for the DB. Then create a Node.js and express.js to handle updating scores to the DB. 
     // Auth will be something that works for web, ios, and android and the user data will be stored on the DB with highscores and maybe themes.
     // Check DynamoDB, MMKR db, firestore,
     // backend cloudcomputing check AWS Lambda, google Cloud functions
