@@ -3,15 +3,19 @@ import React, { useEffect, useState } from "react";
 import { Text, View, StyleSheet, TouchableOpacity, Button } from "react-native";
 
 const Home = ({navigation}) => {
-
+    
     /////////////
     /////////////
+    // NEED TO BE SIGNED IN TO POST A HIGH SCORE
+    // LINK accounts by email for database
+    // Verify email to prevent spam accounts
     // BACKEND WILL BE AWS DynamoDB or GOOGLE for the DB. Then create a Node.js and express.js to handle updating scores to the DB. 
     // Auth will be something that works for web, ios, and android and the user data will be stored on the DB with highscores and maybe themes.
-    // Check DynamoDB, MMKR db, firestore,
+    // Check DynamoDB, MMKV db, firestore,
     // backend cloudcomputing check AWS Lambda, google Cloud functions
     
     // Ads will be google ads? 
+    // Local database highscores? Jeff has the highscore in the grade class 302.
     // firebase analytics 
     // mobile version is to play offline! otherwise you can play on web.
     // frontend will make calls to backend.

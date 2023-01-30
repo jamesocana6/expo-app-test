@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useContext, useState } from 'react';
 import { Text, View, StyleSheet, TextInput, Button } from 'react-native';
 import * as SecureStore from 'expo-secure-store';
 
@@ -16,13 +16,18 @@ async function getValueFor(key) {
   }
 }
 
+function getUseContext() {
+    console.log(useContext("test"))
+}
+
 export default function Storage() {
     console.log(SecureStore)
-  const [key, onChangeKey] = React.useState('Your key here');
-  const [value, onChangeValue] = React.useState('Your value here');
+  const [key, onChangeKey] = useState('Your key here');
+  const [value, onChangeValue] = useState('Your value here');
 
   return (
     <View style={styles.container}>
+        <Button title='GET USE CONTEXT' onPress={getUseContext}/>
       <Text>Save an item, and grab it later!</Text>
       <Button
         title="Save this key/value pair"

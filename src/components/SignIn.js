@@ -1,16 +1,27 @@
 import { Button, View, Text, Platform } from "react-native";
 import { auth, provider } from "../../firebaseConfig"
 import { signInWithRedirect, signOut, getRedirectResult, signInWithPopup } from "firebase/auth";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { TestContext } from "../../App";
+import * as SecureStore from 'expo-secure-store';
+
 
 const SignIn = () => {
+  async function save(key, value) {
+    await SecureStore.setItemAsync(key, JSON.stringify(value));
+  }
+
+  let value = useContext(TestContext)
+  console.log(value)
   const [user, setUser] = useState(undefined)
+  useEffect(() => {setUser(value)}, [])
   const handleSignIn = () => {
     if (Platform.OS === "web") {
       signInWithPopup(auth, provider)
         .then((result) => {
           // const user = result.user;
           setUser(result.user)
+          localStorage.setItem("SignedIn", JSON.stringify(result.user))
           console.log(result.user)
         }).catch((error) => {
           console.log("ERROR")
@@ -20,11 +31,12 @@ const SignIn = () => {
           // The email of the user's account used.
           const email = error.customData.email;
         });
-    } else if (Platform.OS === "android" || Platform.OS === "ios") {
-      signInWithRedirect(auth, provider)
-      getRedirectResult(auth)
+      } else if (Platform.OS === "android" || Platform.OS === "ios") {
+        signInWithRedirect(auth, provider)
+        getRedirectResult(auth)
         .then((result) => {
           const user = result.user;
+          save("SignedIn", user)
           console.log(user)
         }).catch((error) => {
           // Handle Errors here.
@@ -38,7 +50,8 @@ const SignIn = () => {
   }
   const handleSignOut = () => {
     signOut(auth).then(() => {
-      setUser(undefined)
+      setUser(null)
+      localStorage.setItem("SignedIn", null)
     }).catch((error) => {
       // An error happened.
     });
@@ -57,6 +70,7 @@ const SignIn = () => {
   const signedOut = () => {
     return (
       <View>
+        <Text>Not signed in</Text>
         <Button onPress={handleSignIn} title={"Sign In"} />
       </View>
     )

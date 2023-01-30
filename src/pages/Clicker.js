@@ -28,7 +28,7 @@ const Clicker = () => {
       }
     ///ADD COUNTDOwN TIMER 3, 2, 1
     ///Add game timer 10 seconds to click as many times as possible, if on computer, you can use the space bar 
-    ///save high score to MMKV
+    ///save high score to Secure Store
     function getHighscore() {
         if (Platform.OS === "web") {
             setHighscore(localStorage.getItem("HS") || 0)

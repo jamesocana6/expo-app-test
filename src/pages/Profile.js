@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import { Text, View, StyleSheet } from "react-native";
 import Hello from "../components/Hello";
-import SignIp from "../components/SignIn";
+import SignIn from "../components/SignIn";
 
 const Profile = () => {
     const [modalVisible, setModalVisible] = useState(false);
@@ -10,7 +10,7 @@ const Profile = () => {
 
             <View style={styles.container}>
                 <Text>Profile Page</Text>
-                <SignIp/>
+                <SignIn/>
                 <Hello modalVisible={modalVisible} setModalVisible={setModalVisible}/>
             </View>
         </>
