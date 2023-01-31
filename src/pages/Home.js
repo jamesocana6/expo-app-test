@@ -20,6 +20,23 @@ const Home = ({navigation}) => {
     // mobile version is to play offline! otherwise you can play on web.
     // frontend will make calls to backend.
 
+    //Search database for user using verified email
+    //not signed in users will not have highscores saved in the cloud, only locally.
+    //on new highscore, you are prompted to share the score or post it by signing in
+    //mobile users use google play or apple store or verified email or facebook (??)
+    //web users use google acc, apple acc, verified email or facebook??
+
+    //USER MODEL IN DYNAMODB
+    //username:
+    //email:
+    //sign in method: (email, OAuth Google, Google Play, Apple Login)
+    //Highscores: (top 5 scores in each category)
+    //settings preferences:
+    //Theme preferences:
+
+
+
+    
     const [nums, setNums] = useState()
     const randNumbers = () => {
         let randNums = [];
